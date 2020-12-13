@@ -1,0 +1,16 @@
+{% extends 'virtues/base.html' %}
+
+{% block content %}
+    <table>
+        <tr>
+            <th>Rank</th><th>Name</th><th>Score</th>
+            {% for name, score in leaderboard.items %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ name }}</td>
+                    <td>{{ score }}</td>
+                </tr>
+            {% endfor %}
+        </tr>
+    </table>
+{% endblock %}
