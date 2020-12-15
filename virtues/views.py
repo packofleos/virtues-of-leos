@@ -39,7 +39,7 @@ def index(request):
             return redirect('virtues:results')
 
     context = {'formset': formset}
-    return render(request, 'virtues/index.html', {'formset': formset})
+    return render(request, 'virtues/index.html', context)
 
 @login_required
 def results(request):
