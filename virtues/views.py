@@ -38,7 +38,7 @@ def index(request):
                 )
             return redirect('virtues:results')
 
-    context = {'formset': formset}
+    context = {'formset': formset, 'forms_and_tasks': zip(formset, tasks)}
     return render(request, 'virtues/index.html', context)
 
 @login_required

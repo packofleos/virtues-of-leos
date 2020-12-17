@@ -4,10 +4,10 @@
     {% if formset %}
         <form action="{% url 'virtues:index' %}" method="POST">
             {% csrf_token %}
-            {{ formset.management_form }}        
-            {% for form in formset %}
-                {{ form }}
-                </br>
+            {{ formset.management_form }}     
+            {% for form, task in forms_and_tasks %}
+                {{ form.as_p }}
+                <p>{{ task.description }}</p>
             {% endfor %}
             <button type="submit">Submit</button>
         </form>
