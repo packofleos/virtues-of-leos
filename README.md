@@ -10,4 +10,4 @@ point based on their task's amount multiplied by the task's reward. Although, th
 * User ranks
 
 ## About
-This project is licensed under `GNU General Public License v3.0`.
+This project is licensed under `GNU Affero General Public License v3`.
