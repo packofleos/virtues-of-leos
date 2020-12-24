@@ -8,8 +8,20 @@
     <title>Virtues of Leos</title>
 </head>
 <body>
-    {% block content %}
-    <!-- Temporary base html file -->
-    {% endblock %}
+    <header>
+    <p>Virtues of Leos</p>
+    <nav>
+        <ul>
+            <li><a href="{% url 'virtues:index' %}">Home</a></li>
+            <li><a href="{% url 'virtues:index' %}">Virtues</a></li>
+            <li><a href="{% url 'virtues:results' %}">Results</a></li>
+        </ul>
+    </nav>
+    </header>
+    {% block content %}{% endblock %}
+    <footer>
+        <p>Copyright &copy; 2020 Pack of Leos</p>
+        <a href="https://github.com/packofleos/virtues-of-leos">GitHub</a>
+    </footer>
 </body>
 </html>

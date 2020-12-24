@@ -2,14 +2,24 @@
 
 {% block content %}
     {% if formset %}
+    <div class="form-container">
         <form action="{% url 'virtues:index' %}" method="POST">
             {% csrf_token %}
             {{ formset.management_form }}     
             {% for form, task in forms_and_tasks %}
-                {{ form.as_p }}
-                <p>{{ task.description }}</p>
+            <div class="task-container">
+                <div class="task-inner">
+                    <table>{{ form.as_table }}</table>
+                </div>
+                <div class="description">
+                    <p>{{ task.description }}</p>
+                </div>
+            </div>
             {% endfor %}
-            <button type="submit">Submit</button>
+            <div class="btn-container">
+                <button class="btn" type="submit">Submit</button>
+            </div>
         </form>
+    </div>
     {% endif %}
 {% endblock %}
