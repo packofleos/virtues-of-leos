@@ -13,8 +13,12 @@
     <nav>
         <ul>
             <li><a href="{% url 'virtues:index' %}">Home</a></li>
-            <li><a href="{% url 'virtues:index' %}">Virtues</a></li>
             <li><a href="{% url 'virtues:results' %}">Results</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'users:logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'users:login' %}">Login</a></li>
+            {% endif %}
         </ul>
     </nav>
     </header>
