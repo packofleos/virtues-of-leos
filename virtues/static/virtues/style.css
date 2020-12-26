@@ -8,6 +8,8 @@
 body {
     color: var(--mainfont-color);
     background-color: var(--mainbg-color);
+    background-image: url(https://imgur.com/VMYZzDL.gif);
+    background-size: cover;
 }
 
 .form-container, table.leaderboard {
@@ -40,6 +42,9 @@ body {
 }
 
 @media (max-width: 486px) {
+    body {
+        background-size: contain;
+    }
     .task-container {
         border: thick outset var(--border-color);
         margin: 10vw;
