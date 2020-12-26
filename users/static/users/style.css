@@ -1,1 +1,146 @@
-/* style goes here */
+    /* style goes here */
+body {
+    background-color: rgb(0, 0, 0);
+}
+
+/* Potrait phones */
+div.form-container {
+    position: relative;
+    top: 60vh;
+    left: 11vw;
+    line-height: 160%;
+    color: rgb(255, 255, 255);
+    margin-right: 13%;
+}
+ul.errorlist {
+    position: relative;
+    left: -11%;
+}
+input {
+    font-size: 3vh;
+    width: 45%;
+}
+label {
+    font-size: 3.4vh;
+}
+button {
+    width: 20vw;
+    height: 5vh;
+    font-size: 150%;
+}
+
+#Title {
+    z-index: +2;
+    position: absolute;
+    top: 16%;
+    left: 28%;
+    width: 48%;
+    opacity: 0%;
+    animation-name: VOL;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+}
+@keyframes VOL {
+    0% {
+        opacity: 0%;
+        transform: translateY(130px);
+    }
+    60% {
+        transform: translateY(130px);
+        opacity: 100%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
+#logo {
+    position: absolute;
+    top: 5%;
+    left: 16%;
+    width: 65%;
+    opacity: 30%;
+    animation-name: Lion;
+    animation-duration: 1s;
+    animation-delay: 2.5s;
+    animation-fill-mode: backwards;
+}
+@keyframes Lion {
+    0% {
+        opacity: 0%;
+        width: 56%;
+    }
+}
+
+/* Desktop and laptop */
+@media (min-width: 1200px) {
+    div.form-container {
+        position: relative;
+        top: 25vh;
+        left: 72vw;
+        line-height: 160%;
+        color: rgb(255, 255, 255);
+        margin-right: 75%;
+    }
+    ul.errorlist {
+        font-size: 150%;
+        line-height: 100%;
+    }
+    input {
+        font-size: 3vh;
+        width: 52%;
+    }
+    label {
+        font-size: 3.4vh;
+    }
+    button {
+        width: 6vw;
+        height: 5vh;
+        font-size: 110%;
+    }
+
+    #Title {
+        z-index: +2;
+        position: absolute;
+        top: 24%;
+        left: 12%;
+        width: 24%;
+        opacity: 0%;
+        animation-name: VOL;
+        animation-duration: 1.5s;
+        animation-fill-mode: forwards;
+        animation-delay: 1s;
+    }
+    @keyframes VOL {
+        0% {
+            opacity: 0%;
+            transform: translateX(115%);
+        }
+        60% {
+            transform: translateX(115%);
+            opacity: 100%;
+        }
+        100% {
+            opacity: 100%;
+        }
+    }
+
+    #logo {
+        position: absolute;
+        top: 8%;
+        left: 7%;
+        width: 30%;
+        opacity: 24%;
+        animation-name: Lion;
+        animation-duration: 1s;
+        animation-delay: 2.5s;
+        animation-fill-mode: backwards;
+    }
+    @keyframes Lion {
+        0% {
+            opacity: 0%;
+            width: 28%;
+        }
+    }
+}
