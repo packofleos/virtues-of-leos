@@ -30,12 +30,13 @@ def index(request):
 
             for history in histories:
                 history.user = request.user
-                # User probably wants to modify their record, if it existed in the past.
-                # So, in this case just update. Else, create the record.
-                history_, created = TaskHistory.objects.update_or_create(
-                    date=history.date, user=history.user, task=history.task,
-                    defaults={'amount': history.amount} 
-                )
+                if history.amount != 0:
+                    # User probably wants to modify their record, if it existed in the past.
+                    # So, in this case just update. Else, create the record.
+                    history_, created = TaskHistory.objects.update_or_create(
+                        date=history.date, user=history.user, task=history.task,
+                        defaults={'amount': history.amount} 
+                    )
             return redirect('virtues:results')
 
     context = {'formset': formset, 'forms_and_tasks': zip(formset, tasks)}
