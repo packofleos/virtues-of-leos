@@ -58,3 +58,7 @@ body {
 .date-input, .task-input, .amount-input {
     width: 70%;
 }
+
+label {
+    font-family: sans-serif;
+}
