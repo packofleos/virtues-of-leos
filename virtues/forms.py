@@ -22,8 +22,9 @@ class TaskHistoryForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
         task = cleaned_data.get('task')
-        if task:
-            if cleaned_data.get('amount') > task.max_amount:
+        amount = cleaned_data.get('amount')
+        if task and amount:
+            if amount > task.max_amount:
                 # cannot exceed the task's max_amount
                 raise ValidationError(f"Amount cannot be greater than {task}'s max_amount ({task.max_amount}).")
         date = cleaned_data.get('date') 
