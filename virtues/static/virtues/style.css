@@ -56,7 +56,7 @@ body {
 }
 
 .date-input, .task-input, .amount-input {
-    width: 70%;
+    width: 100px;
 }
 
 label {
