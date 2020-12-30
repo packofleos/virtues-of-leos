@@ -1,3 +1,5 @@
+import datetime
+
 from django.utils import timezone
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect
@@ -48,18 +50,10 @@ def index(request):
 def results(request):
     """View which deals with showing the leaderboard."""
 
-    week_history = TaskHistory.objects.order_by('-date')[:7]
-    leaderboard = {}
-
-    for history in week_history:
-        user = str(history.user)
-        score = history.task.reward * history.amount
-        try:
-            leaderboard[user] += score
-        except KeyError:
-            leaderboard[user] = score
+    week_history = TaskHistory.objects.filter(date__gte=timezone.now()-datetime.timedelta(days=7))
+    entries = {entry['user__username']: entry['score'] for entry in TaskHistory.get_score(week_history)}
 
     # sort leaderboard by scores
-    leaderboard = dict(sorted(leaderboard.items(), reverse=True, key=lambda item: item[1])) 
+    leaderboard = dict(sorted(entries.items(), reverse=True, key=lambda item: item[1])) 
     context = {'leaderboard': leaderboard}
     return render(request, 'virtues/results.html', context)

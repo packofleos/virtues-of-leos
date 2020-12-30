@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils import timezone
+from django.db.models import F, Sum
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 
@@ -30,3 +30,7 @@ class TaskHistory(models.Model):
 
     def __str__(self):
         return f"{self.date.strftime('%d/%m/%Y')} - {str(self.user)} - {str(self.task)}"
+
+    @classmethod
+    def get_score(cls, queryset):
+        return queryset.values('user__username').annotate(score=Sum(F('amount') * F('task__reward')))
