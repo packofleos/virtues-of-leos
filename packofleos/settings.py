@@ -11,7 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 import os
+import shlex
 from pathlib import Path
+
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,17 +27,37 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = not os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost'] 
+
+if not DEBUG:
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    ALLOWED_HOSTS.append(os.environ.get('DOMAIN'))
+
+# EMAIL
+admins = os.environ.get('ADMINS')
+# Format of os.environ['ADMINS']:
+# 'name' 'email address', 'name2' 'email address2', '... ...' '...'
+if admins:
+    ADMINS = [(name, email) for name, email in [shlex.split(admin) for admin in admins.split(', ')]]
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('HOST_EMAIL')
+EMAIL_HOST_PASSWORD = os.environ.get('HOST_EMAIL_PASS')
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # 3rd party apps
+    'whitenoise.runserver_nostatic',
+    # Pack of Leos apps
     'virtues',
     'users',
-
     # default django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -46,6 +69,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # For serving static files
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -53,6 +77,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# whitenoise compression and caching
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'packofleos.urls'
 
@@ -90,6 +117,7 @@ DATABASES = {
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
 }
+DATABASES['default'] = dj_database_url.config(conn_max_age=600) if not DEBUG else DATABASES['default']
 
 
 # Password validation
@@ -116,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'  # Set your time zone
+TIME_ZONE = os.environ.get('TIME_ZONE', 'UTC')
 
 USE_I18N = False
 
@@ -129,6 +157,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Login
