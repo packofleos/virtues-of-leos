@@ -51,9 +51,18 @@ def results(request):
     """View which deals with showing the leaderboard."""
 
     week_history = TaskHistory.objects.filter(date__gte=timezone.now()-datetime.timedelta(days=7))
-    entries = {entry['user__username']: entry['score'] for entry in TaskHistory.get_score(week_history)}
+    overall_queryset = TaskHistory.get_score(week_history)
+    per_task_queryset = TaskHistory.get_score(week_history, per_task=True)
 
-    # sort leaderboard by scores
-    leaderboard = dict(sorted(entries.items(), reverse=True, key=lambda item: item[1])) 
-    context = {'leaderboard': leaderboard}
+    leaderboard_overall = {entry['user__username']: entry['score'] for entry in overall_queryset}
+
+    leaderboard_per_task = {}
+    for entry in per_task_queryset:
+        per_task = {entry['user__username']: entry['score']}
+        try:
+            leaderboard_per_task[entry['task__name']].update(per_task)
+        except KeyError:
+            leaderboard_per_task[entry['task__name']] = per_task
+
+    context = {'leaderboard': leaderboard_overall, 'per_task': leaderboard_per_task}
     return render(request, 'virtues/results.html', context)

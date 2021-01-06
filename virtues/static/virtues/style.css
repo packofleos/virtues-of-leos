@@ -62,3 +62,16 @@ body {
 label {
     font-family: sans-serif;
 }
+
+/* ~~ Leaderboard ~~ */
+/*/ Main Leaderboard is styled above /*/
+
+.task-leaderboards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.task-leaderboards > div {
+    margin: 2vw;
+}

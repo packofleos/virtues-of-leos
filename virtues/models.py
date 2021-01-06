@@ -32,5 +32,21 @@ class TaskHistory(models.Model):
         return f"{self.date.strftime('%d/%m/%Y')} - {str(self.user)} - {str(self.task)}"
 
     @classmethod
-    def get_score(cls, queryset):
-        return queryset.values('user__username').annotate(score=Sum(F('amount') * F('task__reward')))
+    def get_score(cls, queryset, per_task=False, sortby_score=True):
+        """Get score of users from queryset.
+
+        querset: QuerySet
+            The queryset to determine the score from.
+        per_task: bool = False
+            Returns score per task when True.
+        sortby_score: bool = True
+            Sort the scores (in descending order) or not. Returns a list instead of queryset when True.
+        """
+        values = ['user__username']
+        if per_task:
+            values.append('task__name')
+
+        result = queryset.values(*values).distinct().annotate(score=Sum(F('amount') * F('task__reward')))
+        result = sorted(result, reverse=True, key=lambda record: record['score']) if sortby_score else result
+
+        return result

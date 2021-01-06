@@ -13,4 +13,22 @@
             {% endfor %}
         </tr>
     </table>
+    <div class="task-leaderboards">
+        {% for task, record in per_task.items %}
+            <div>
+                <table>
+                    <tr>
+                        <th>Rank</th><th>Name</th><th>{{ task }}</th>
+                    </tr>
+                    {% for name, score in record.items %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ name }}</td>
+                            <td>{{ score }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
