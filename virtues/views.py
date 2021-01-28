@@ -5,6 +5,7 @@ from django.forms import modelformset_factory
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
+from . import app_conf
 from .models import DailyTask, TaskHistory
 from .forms import TaskHistoryForm
 from .decorators import ignorePOST_from
@@ -50,9 +51,9 @@ def index(request):
 def results(request):
     """View which deals with showing the leaderboard."""
 
-    week_history = TaskHistory.objects.filter(date__gte=timezone.now()-datetime.timedelta(days=7))
-    overall_queryset = TaskHistory.get_score(week_history)
-    per_task_queryset = TaskHistory.get_score(week_history, per_task=True)
+    latest_history = TaskHistory.objects.filter(date__gte=timezone.now()-datetime.timedelta(days=app_conf.MAX_DAY))
+    overall_queryset = TaskHistory.get_score(latest_history)
+    per_task_queryset = TaskHistory.get_score(latest_history, per_task=True)
 
     leaderboard_overall = {entry['user__username']: entry['score'] for entry in overall_queryset}
 

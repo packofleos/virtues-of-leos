@@ -4,6 +4,7 @@ from django import forms
 from django.utils import timezone
 from django.core.validators import ValidationError
 
+from . import app_conf
 from .models import TaskHistory
 
 class TaskHistoryForm(forms.ModelForm):
@@ -33,5 +34,5 @@ class TaskHistoryForm(forms.ModelForm):
         if date:
             if  date > timezone.now().date():
                 raise ValidationError("You cannot add a task in the future.")
-            elif date < (timezone.now().date() - datetime.timedelta(days=7)):
-                raise ValidationError("You can only add a task 7 days in the past.")
+            elif date < (timezone.now().date() - datetime.timedelta(days=app_conf.MAX_DAY)):
+                raise ValidationError(f"You can only add a task {app_conf.MAX_DAY} days in the past.")
