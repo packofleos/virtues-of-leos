@@ -51,7 +51,9 @@ def index(request):
 def results(request):
     """View which deals with showing the leaderboard."""
 
-    latest_history = TaskHistory.objects.filter(date__gte=timezone.now()-datetime.timedelta(days=app_conf.MAX_DAY))
+    latest_history = TaskHistory.objects.all()
+    # delete old task histories
+    latest_history.filter(date__lt=timezone.now()-datetime.timedelta(days=app_conf.MAX_DAY)).delete()
     overall_queryset = TaskHistory.get_score(latest_history)
     per_task_queryset = TaskHistory.get_score(latest_history, per_task=True)
 
