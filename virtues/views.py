@@ -35,13 +35,20 @@ def index(request):
 
             for history in histories:
                 history.user = request.user
-                if history.amount != 0:
+                amount = history.amount
+                fields = {'date': history.date, 'user': history.user, 'task': history.task}
+                # check for amount because NULL amount shouldn't be stored on the database.
+                # don't use 'if amount' because 0s are accepted.
+                if amount is not None:
                     # User probably wants to modify their record, if it existed in the past.
                     # So, in this case just update. Else, create the record.
-                    history_, created = TaskHistory.objects.update_or_create(
-                        date=history.date, user=history.user, task=history.task,
-                        defaults={'amount': history.amount} 
-                    )
+                    if amount == 0:
+                        try:
+                            TaskHistory.objects.get(**fields).delete()
+                        except TaskHistory.DoesNotExist:
+                            pass
+                    else:
+                        TaskHistory.objects.update_or_create(**fields, defaults={'amount': amount})
             return redirect('virtues:results')
 
     context = {'formset': formset, 'forms_and_tasks': zip(formset, tasks)}

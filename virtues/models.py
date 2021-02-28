@@ -26,7 +26,8 @@ class TaskHistory(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     task = models.ForeignKey(DailyTask, on_delete=models.CASCADE)
     # amount field cannot exceed task's max_amount and the validation is handled in the model form
-    amount = models.PositiveIntegerField(default=0)
+    # Entering no amount is allowed but it shouldn't be stored in the database
+    amount = models.PositiveIntegerField(blank=True)
 
     def __str__(self):
         return f"{self.date.strftime('%d/%m/%Y')} - {str(self.user)} - {str(self.task)}"
