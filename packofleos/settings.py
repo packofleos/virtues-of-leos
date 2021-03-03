@@ -56,8 +56,8 @@ INSTALLED_APPS = [
     # 3rd party apps
     'whitenoise.runserver_nostatic',
     # Pack of Leos apps
-    'virtues',
-    'users',
+    'virtues.apps.VirtuesConfig',
+    'users.apps.UsersConfig',
     # default django apps
     'django.contrib.admin',
     'django.contrib.auth',
