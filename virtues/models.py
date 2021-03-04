@@ -3,12 +3,14 @@ from django.db.models import F, Sum
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 
+MAX_AMOUNT = 1000
+
 class DailyTask(models.Model):
     """The model of daily tasks."""
     name = models.CharField(max_length=200)
     description = models.TextField(max_length=2000)
     reward = models.PositiveIntegerField(choices=[(n, n) for n in range(1, 11)])
-    max_amount = models.PositiveIntegerField(validators=[MaxValueValidator(1000)])
+    max_amount = models.PositiveIntegerField(validators=[MaxValueValidator(MAX_AMOUNT)])
 
     def __str__(self):
         return self.name
@@ -43,7 +45,7 @@ class TaskHistory(models.Model):
         sortby_score: bool = True
             Sort the scores (in descending order) or not. Returns a list instead of queryset when True.
         """
-        values = ['user__username']
+        values = ['user']
         if per_task:
             values.append('task__name')
 
@@ -51,3 +53,15 @@ class TaskHistory(models.Model):
         result = sorted(result, reverse=True, key=lambda record: record['score']) if sortby_score else result
 
         return result
+
+class Title(models.Model):
+    """The model of Rank/Title of users."""
+    name = models.CharField(max_length=200)
+    description = models.TextField(max_length=2000)
+    tasks = models.ManyToManyField(DailyTask)
+    users = models.ManyToManyField(User, blank=True)
+    condition = models.CharField(max_length=10, choices=[(n, n) for n in ['Highest', 'Minimum']])
+    amount = models.PositiveIntegerField(validators=[MaxValueValidator(MAX_AMOUNT)])
+
+    def __str__(self):
+        return self.name

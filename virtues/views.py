@@ -3,12 +3,15 @@ import datetime
 from django.utils import timezone
 from django.forms import modelformset_factory
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from . import app_conf
 from .models import DailyTask, TaskHistory
 from .forms import TaskHistoryForm
 from .decorators import ignorePOST_from
+
+from .ext import title
 
 @login_required
 @ignorePOST_from(['guest'], 'virtues:results')
@@ -64,15 +67,16 @@ def results(request):
     overall_queryset = TaskHistory.get_score(latest_history)
     per_task_queryset = TaskHistory.get_score(latest_history, per_task=True)
 
-    leaderboard_overall = {entry['user__username']: entry['score'] for entry in overall_queryset}
+    leaderboard_overall = {User.objects.get(pk=entry['user']): entry['score'] for entry in overall_queryset}
 
     leaderboard_per_task = {}
     for entry in per_task_queryset:
-        per_task = {entry['user__username']: entry['score']}
+        per_task = {User.objects.get(pk=entry['user']): entry['score']}
         try:
             leaderboard_per_task[entry['task__name']].update(per_task)
         except KeyError:
             leaderboard_per_task[entry['task__name']] = per_task
 
+    title.set_title(request.user, leaderboard_overall, leaderboard_per_task)
     context = {'leaderboard': leaderboard_overall, 'per_task': leaderboard_per_task}
     return render(request, 'virtues/results.html', context)

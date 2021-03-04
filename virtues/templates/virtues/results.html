@@ -4,10 +4,10 @@
     <table class="leaderboard">
         <tr>
             <th>Rank</th><th>Name</th><th>Score</th>
-            {% for name, score in leaderboard.items %}
+            {% for user, score in leaderboard.items %}
                 <tr>
                     <td>{{ forloop.counter }}</td>
-                    <td>{{ name }}</td>
+                    <td>{{ user }} [{{ user.title_set.all|first }}]</td>
                     <td>{{ score }}</td>
                 </tr>
             {% endfor %}
@@ -20,10 +20,10 @@
                     <tr>
                         <th>Rank</th><th>Name</th><th>{{ task }}</th>
                     </tr>
-                    {% for name, score in record.items %}
+                    {% for user, score in record.items %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ name }}</td>
+                            <td>{{ user }}</td>
                             <td>{{ score }}</td>
                         </tr>
                     {% endfor %}
