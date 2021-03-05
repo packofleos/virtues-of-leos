@@ -3,7 +3,7 @@ from django.db.models import F, Sum
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator
 
-MAX_AMOUNT = 1000
+from .app_conf import MAX_AMOUNT
 
 class DailyTask(models.Model):
     """The model of daily tasks."""
