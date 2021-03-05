@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from . import app_conf
-from .models import DailyTask, TaskHistory
+from .models import DailyTask, TaskHistory, Title
 from .forms import TaskHistoryForm
 from .decorators import ignorePOST_from
 
@@ -80,3 +80,9 @@ def results(request):
     title.set_title(request.user, leaderboard_overall, leaderboard_per_task)
     context = {'leaderboard': leaderboard_overall, 'per_task': leaderboard_per_task}
     return render(request, 'virtues/results.html', context)
+
+@login_required
+def show_titles(request):
+    titles = Title.objects.all()
+    context = {'titles': titles}
+    return render(request, 'virtues/titles.html', context)
