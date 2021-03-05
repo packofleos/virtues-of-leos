@@ -61,7 +61,7 @@ class Title(models.Model):
     tasks = models.ManyToManyField(DailyTask)
     users = models.ManyToManyField(User, blank=True)
     condition = models.CharField(max_length=10, choices=[(n, n) for n in ['Highest', 'Minimum']])
-    amount = models.PositiveIntegerField(validators=[MaxValueValidator(MAX_AMOUNT)])
+    amount = models.PositiveIntegerField()
 
     def __str__(self):
         return self.name
