@@ -18,9 +18,10 @@ def _set_highest(title, per_task, **kwargs):
         # reversed sorted dictionary is expected
         top_users.add(list(per_task[str(task)])[0])
 
+    title.users.remove(title.users.all().first())
     if len(top_users) == 1:
-        title.users.remove(title.users.all().first())
         title.users.add(*top_users)
+
 
 def _set_minimum(title, overall, **kwargs):
     """Verify users' qualification for overall Minimum score based titles."""
@@ -31,3 +32,5 @@ def _set_minimum(title, overall, **kwargs):
     for user, score in overall.items():
         if score >= title.amount:
             title.users.add(user)
+        else:
+            title.users.remove(user)
