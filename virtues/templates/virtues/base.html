@@ -1,31 +1,72 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{% static 'virtues/style.css' %}">
-    <title>Virtues of Leos</title>
-</head>
-<body>
-    <header>
-    <p>Virtues of Leos</p>
-    <nav>
-        <ul>
-            <li><a href="{% url 'virtues:index' %}">Home</a></li>
-            <li><a href="{% url 'virtues:results' %}">Results</a></li>
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'users:logout' %}">Logout</a></li>
-            {% else %}
-                <li><a href="{% url 'users:login' %}">Login</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    </header>
-    {% block content %}{% endblock %}
-    <footer>
-        <p>Copyright &copy; 2021 Pack of Leos</p>
-        <a href="https://github.com/packofleos/virtues-of-leos">GitHub</a>
-    </footer>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'virtues/style.css' %}">
+        <script src="https://kit.fontawesome.com/11175c8266.js" crossorigin="anonymous"></script>
+        <title>Virtues of Leos</title>
+    </head>
+    <body>
+        <main>
+            <!-- Navbar -->
+            <nav class="nav">
+                <div class="nav-menu flex-row">
+                    <div class="nav-brand">
+                        <a href="#" class="text-gray">Virtues Of Leos</a>
+                        <img src="https://i.imgur.com/VehnxHV.png" alt="lion">
+                    </div>
+                    <div class="toggle-collapse">
+                        <div class="toggle-icons">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <ul class="nav-items">
+                            <li class="nav-link">
+                                <i class="fas fa-home"></i>
+                                <a href="{% url 'virtues:index' %}" class="cool-link ">Home</a>
+                            </li>
+                            <li class="nav-link">
+                                <i class="fas fa-book-open"></i>
+                                <a href="{% url 'virtues:titles' %}"class="cool-link">Titles</a>
+                            </li>
+                            <li class="nav-link">
+                                <i class="fas fa-award"></i>
+                                <a href="{% url 'virtues:results' %}" class="cool-link ">Leaderboard</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="nav-items">
+                            {% if user.is_authenticated %}
+                                <li class="nav-link">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <a href="{% url 'users:logout' %}">Logout</a>
+                                </li>
+                            {% else %}
+                                <li><a href="{% url 'users:login' %}">Login</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer-bottom">
+            <p>Copyright &copy; 2020 Pack of Leos.</p>
+            <div class="github">
+                <i class="fab fa-github"></i>
+                <a href="https://github.com/packofleos/virtues-of-leos">GitHub</a>
+            </div>
+        </footer>
+
+        <!-- Jquery File -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <!-- Custom Javascript file -->
+        <script src="{% static 'virtues/js/nav.js' %}"></script>
+    </body>
 </html>

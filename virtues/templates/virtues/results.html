@@ -1,34 +1,41 @@
 {% extends 'virtues/base.html' %}
 
 {% block content %}
-    <table class="leaderboard">
-        <tr>
-            <th>Rank</th><th>Name</th><th>Score</th>
-            {% for user, score in leaderboard.items %}
+    <div class="leaderboard">
+        <div class="glb-leaderboard">
+            <table class="content-table">
+                <caption>Global</caption>
                 <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ user }} [{{ user.title_set.all|first }}]</td>
-                    <td>{{ score }}</td>
-                </tr>
-            {% endfor %}
-        </tr>
-    </table>
-    <div class="task-leaderboards">
-        {% for task, record in per_task.items %}
-            <div>
-                <table>
-                    <tr>
-                        <th>Rank</th><th>Name</th><th>{{ task }}</th>
-                    </tr>
-                    {% for user, score in record.items %}
-                        <tr>
+                    <th>Rank</th><th>Name</th><th>Score</th>
+                    {% for user, score in leaderboard.items %}
+                        <tr class="active-row">
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ user }}</td>
+                            <td>{{ user }} [{{ user.title_set.all|first }}]</td>
                             <td>{{ score }}</td>
                         </tr>
                     {% endfor %}
-                </table>
-            </div>
-        {% endfor %}
+                </tr>
+            </table>
+        </div>
+        <hr class="solid">
+        <div class="task-leaderboard">
+            {% for task, record in per_task.items %}
+                    <table class="content-table">
+                        <caption>{{ task }}</caption>
+                        <tr>
+                            <th>Rank</th><th>Name</th><th>Points</th>
+                        </tr>
+                        {% for user, score in record.items %}
+                            <tr class="active-row">
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ user }}</td>
+                                <td>{{ score }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+            {% endfor %}
+        </div>
     </div>
 {% endblock %}
+
+

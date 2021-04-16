@@ -1,57 +1,187 @@
-@import url('https://fonts.googleapis.com/css2?family=Langar&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Merienda&family=Redressed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Anton&family=Livvic:wght@300&display=swap');
 
-:root {
-    --main-color: rgb(44, 0, 114);
-    --second-color:  rgb(126, 68, 219);
-    --border-color: rgb(180, 180, 180);
-    --mainbg-color: black;
-    --mainfont-color: honeydew;
-    --headerfooter-font: 'Langar', sans-serif;
-    --body-font: 'Merienda', cursive;
+
+html, body{
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    background: #000000af;
+    color: white;
 }
 
-/* ~~ header & nav bar ~~ */
-body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: var(--body-font);
+main{
+    min-height: calc(100vh - 80px);
 }
 
-header {
-    color: var(--mainfont-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1.5rem;
-    background-color: var(--main-color);
-    margin-bottom: 1rem;
+.content{
+    margin: 5vh;
 }
 
-header p, header nav ul li a {
-    color: inherit;
+:root{
+    /* theme colors */
+    --text-white: #ffffff;
+    --text-light: #686666da;
+    --bg-color: #0f0f0f;
+    --white: #ffffff;
+    --midnight: #104f55;
+    --primary: #1B1B1B;
+    --primary-light: #2C2C2C;
+    --leaderboard-bg-1: #101010;
+    --leaderboard-bg-2:#0B0B0B;
+    --leaderboard-highlight: #009879;
+    --leaderboard-white-underline: #dddddd;
+    --black: black;
+    --hr-solid: #bbb;
+    /*  Theme font-family  */
+    --Abel:'Abel', cursive;
+    --Anton:'Anton', cursive;
+    --Livvic: 'Livvic', cursive;
+}
+
+h1{
+    font-family: var(--Anton);
+    font-size: 2.5rem;
+}
+
+h2{
+    font-family: var(--Abel);
+}
+
+h3{
+    font-family: var(--Abel);
+    font-size: 1.3rem;
+}
+
+p{
+    font-size: 0.8rem;
+}
+
+hr.solid {
+    border-top: .1rem solid var(--hr-solid);
+    margin: 5rem 2rem;
+}
+
+
+/* ~~ Global classes ~~ */
+a{
     text-decoration: none;
-    padding-left: 5px;
-    font-size: 1.5rem;
-    letter-spacing: 1.5px;
-    font-family: var(--headerfooter-font);
+    color: var(--text-white);
 }
 
-header nav ul li {
-    display: inline-block;
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-@media (max-width: 486px) {
-    /* TODO: add a menu icon */
-    header nav ul li {
-        display: block;
-    }
-    header {
-        margin-bottom: 25px;
-    }
+ul{
+    list-style-type: none;
 }
+i{
+    color: var(--text-white);
+}
+
+/* ~~ navbar ~~ */
+
+.nav{
+    background: var(--primary);
+    box-shadow: 1px 1px 1.5rem rgba(0, 0, 0, 0.8);
+    padding: 0.2rem;
+    height: 0rem;
+    min-height: 10vh;
+    overflow: hidden;
+    transition: height 1s ease-in-out;
+}
+
+.nav-brand{
+    display: flex;
+}
+
+.nav-brand img{
+    width: 50px;
+    height: auto;
+}
+
+.nav .nav-menu{
+    justify-content: space-between;
+}
+
+.nav .toggle-collapse{
+    position: absolute;
+    top:0%;
+    width: 90%;
+    cursor: pointer;
+    display:none;
+}
+
+.nav .toggle-collapse .toggle-icons{
+    display: flex;
+    justify-content: flex-end;
+    padding: 1.7rem 0;
+}
+
+.nav .toggle-collapse .toggle-icons i{
+    font-size: 1.4rem;
+    color: var(--text-white)
+}
+
+.collapse{
+    height:25rem;
+}
+
+.nav .nav-items{
+    display: flex;
+    margin: 0;
+}
+
+.nav .nav-items .nav-link{
+    padding: 1.6rem 1rem;
+    font-size: 1.1rem;
+    position: relative;
+    font-family: var(--Abel);
+    font-size: 1.1rem;
+}
+
+.nav .nav-items .nav-link:hover{
+    background-color: var(--midnight);
+}
+
+.nav .nav-items .nav-link:hover a{
+    color: white;
+}
+
+.nav .nav-brand a{
+    font-size: 1.3rem;
+    padding: 1rem;
+    display: block;
+    font-family: var(--Anton);
+}
+
+
+/* cool link */
+.cool-link::after{
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width .3s;
+}
+
+.cool-link:hover::after {
+    width: 100%;
+    transition: width .3s;
+}
+
+.active::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: white;
+}
+
 
 /* ~~ footer ~~ */
 footer {
@@ -66,4 +196,71 @@ footer {
 
 footer * {
     color: var(--second-color);
+}
+
+
+footer{
+    width:100%;
+    font-family: 'Poppins';
+    padding-top: 20px;
+    color: white;
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.footer-bottom{
+    justify-content: space-evenly;
+    background: black;
+    width:100%;
+    padding: 10px;
+    text-align: center;
+}
+
+.footer-bottom p{
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.footer-bottom span{
+    text-transform: uppercase;
+    opacity: .4;
+    font-weight: 200;
+}
+.footer-bottom i{
+    font-size: 1.4rem;
+    color: var(--text-white);
+}
+
+
+/* ~~ Viewport less than or equal to 750px ~~ */
+@media only screen and (max-width: 750px){
+    .nav .nav-menu, .nav .nav-items{
+        flex-direction: column;
+    }
+
+    .nav .toggle-collapse{
+        display: initial;
+    }
+
+    .leaderboard{
+        margin: 1rem;
+    }
+    .content-table{
+        width: 100%;
+    }
+
+    .content-table th,
+    .content-table td{
+        padding: 1rem .5rem;
+        font-size: 15px;
+    }
+
+    .content-table p{
+        font-size: 10px;
+        display: inline;
+    }
 }

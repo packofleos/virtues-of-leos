@@ -1,25 +1,38 @@
 {% extends 'virtues/base.html' %}
-
 {% block content %}
     {% if formset %}
-    <div class="form-container">
-        <form action="{% url 'virtues:index' %}" method="POST">
+        <form class="task-form" action="{% url 'virtues:index' %}" method="POST">
+            <div class="task">
             {% csrf_token %}
-            {{ formset.management_form }}     
+            {{ formset.management_form }}  
             {% for form, task in forms_and_tasks %}
             <div class="task-container">
-                <div class="task-inner">
-                    <table>{{ form.as_table }}</table>
+                <div class="task-above" >
+                        <h2>
+                            {{ form.name.errors }}
+                            {{ task.name }}
+                        </h2>
+                    <div>
+                        <table>
+                            {{ form.date.errors }}
+                            {{ form.date }}
+                        </table>
+                    </div>
                 </div>
-                <div class="description">
-                    <p>{{ task.description }}</p>
+                <div class="task-down">
+                        <p>{{ task.description }}</p>
+                        {{ form.non_field_errors }}
+                        <td>
+                            {{ form.amount.errors }}
+                            {{ form.amount }}
+                        </td>
                 </div>
             </div>
             {% endfor %}
-            <div class="btn-container">
-                <button class="btn" type="submit">Submit</button>
+        </div>
+            <div class="submit">
+                <input type="submit" value="Submit">
             </div>
         </form>
-    </div>
     {% endif %}
 {% endblock %}
