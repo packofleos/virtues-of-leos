@@ -1,8 +1,10 @@
 {% extends 'virtues/base.html' %}
 
 {% block content %}
+<div class="content">
     {% for title in titles %}
         <h2>{{ title }}</h2>
         <p>{{ title.description }} Leos with these title: {{ title.users.all|join:", " }}</p>
     {% endfor %}
+</div>
 {% endblock %}
