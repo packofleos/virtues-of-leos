@@ -2,7 +2,7 @@
 
 
 /* ~~ Task ~~ */
-.task{
+.task {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -10,7 +10,7 @@
     font-family: 'Poppins';
 }
 
-.task-container{
+.task-container {
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -27,7 +27,7 @@
 }
 
 
-.task-container .task-above{
+.task-container .task-above {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -35,39 +35,39 @@
     padding: .1rem;
 }
 
-.task-container .task-down{
+.task-container .task-down {
     margin-top: 10px;
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.task-container p{
+.task-container p {
     width: 100%;
     height: 4rem;
     overflow: auto
 }
 
-.task-container h2{
+.task-container h2 {
     width: 100%;
     height: 3rem;
     margin-top: none;
 }
 
-.task-container li{
+.task-container li {
     font-size: .8rem;
 }
-.task-container .errorlist{
+.task-container .errorlist {
     margin: 2px;
     padding: 0;
     color: aqua
 }
-.task-container .nonfield{
+.task-container .nonfield {
     margin: 0;
     padding: 0;
 }
 /* Submit */
-.submit{
+.submit {
     text-align: center; 
 }
 
@@ -113,19 +113,19 @@ input[type=submit]:hover {
 
 /* ~~ Leaderboard*/
 
-.leaderboard{
+.leaderboard {
     color: white;
     font-family: 'Poppins';
     font-size: 10px;
 }
 
-.glb-leaderboard{
+.glb-leaderboard {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 }
 
-.task-leaderboard{
+.task-leaderboard {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -143,7 +143,7 @@ input[type=submit]:hover {
     text-align: left;
 }
 
-.content-table p{
+.content-table p {
     display: inline;
     font-size: 11px;
 }
@@ -154,7 +154,7 @@ input[type=submit]:hover {
     font-weight: bold;
 }
 
-.content-table caption{
+.content-table caption {
     text-align: center;
     width: 4rem;
     padding: 1rem 2rem;
@@ -164,7 +164,7 @@ input[type=submit]:hover {
 
 }
 .content-table th,
-.content-table td{
+.content-table td {
     padding: 1rem 2rem;
     font-size: 17px;
 }
