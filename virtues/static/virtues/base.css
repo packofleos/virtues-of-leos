@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=Anton&family=Livvic:wght@300&display=swap');
 
 
-html, body{
+html, body {
     margin: 0%;
     box-sizing: border-box;
     overflow-x: hidden;
@@ -10,20 +10,19 @@ html, body{
     color: white;
 }
 
-main{
+main {
     min-height: calc(100vh - 80px);
 }
 
-.content{
+.content {
     margin: 5vh;
 }
 
-:root{
+:root {
     /* theme colors */
-    --text-white: #ffffff;
+    --text-color: #ffffff;
     --text-light: #686666da;
     --bg-color: #0f0f0f;
-    --white: #ffffff;
     --midnight: #104f55;
     --primary: #1B1B1B;
     --primary-light: #2C2C2C;
@@ -39,21 +38,21 @@ main{
     --Livvic: 'Livvic', cursive;
 }
 
-h1{
+h1 {
     font-family: var(--Anton);
     font-size: 2.5rem;
 }
 
-h2{
+h2 {
     font-family: var(--Abel);
 }
 
-h3{
+h3 {
     font-family: var(--Abel);
     font-size: 1.3rem;
 }
 
-p{
+p {
     font-size: 0.8rem;
 }
 
@@ -64,27 +63,27 @@ hr.solid {
 
 
 /* ~~ Global classes ~~ */
-a{
+a {
     text-decoration: none;
-    color: var(--text-white);
+    color: var(--text-color);
 }
 
-.flex-row{
+.flex-row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
-i{
-    color: var(--text-white);
+i {
+    color: var(--text-color);
 }
 
 /* ~~ navbar ~~ */
 
-.nav{
+.nav {
     background: var(--primary);
     box-shadow: 1px 1px 1.5rem rgba(0, 0, 0, 0.8);
     padding: 0.2rem;
@@ -94,20 +93,20 @@ i{
     transition: height 1s ease-in-out;
 }
 
-.nav-brand{
+.nav-brand {
     display: flex;
 }
 
-.nav-brand img{
+.nav-brand img {
     width: 50px;
     height: auto;
 }
 
-.nav .nav-menu{
+.nav .nav-menu {
     justify-content: space-between;
 }
 
-.nav .toggle-collapse{
+.nav .toggle-collapse {
     position: absolute;
     top:0%;
     width: 90%;
@@ -115,27 +114,27 @@ i{
     display:none;
 }
 
-.nav .toggle-collapse .toggle-icons{
+.nav .toggle-collapse .toggle-icons {
     display: flex;
     justify-content: flex-end;
     padding: 1.7rem 0;
 }
 
-.nav .toggle-collapse .toggle-icons i{
+.nav .toggle-collapse .toggle-icons i {
     font-size: 1.4rem;
-    color: var(--text-white)
+    color: var(--text-color)
 }
 
-.collapse{
+.collapse {
     height:25rem;
 }
 
-.nav .nav-items{
+.nav .nav-items {
     display: flex;
     margin: 0;
 }
 
-.nav .nav-items .nav-link{
+.nav .nav-items .nav-link {
     padding: 1.6rem 1rem;
     font-size: 1.1rem;
     position: relative;
@@ -143,15 +142,15 @@ i{
     font-size: 1.1rem;
 }
 
-.nav .nav-items .nav-link:hover{
+.nav .nav-items .nav-link:hover {
     background-color: var(--midnight);
 }
 
-.nav .nav-items .nav-link:hover a{
+.nav .nav-items .nav-link:hover a {
     color: white;
 }
 
-.nav .nav-brand a{
+.nav .nav-brand a {
     font-size: 1.3rem;
     padding: 1rem;
     display: block;
@@ -160,7 +159,7 @@ i{
 
 
 /* cool link */
-.cool-link::after{
+.cool-link::after {
     content: '';
     display: block;
     width: 0;
@@ -199,7 +198,7 @@ footer * {
 }
 
 
-footer{
+footer {
     width:100%;
     font-family: 'Poppins';
     padding-top: 20px;
@@ -211,7 +210,7 @@ footer{
     align-items: center;
 }
 
-.footer-bottom{
+.footer-bottom {
     justify-content: space-evenly;
     background: black;
     width:100%;
@@ -219,47 +218,47 @@ footer{
     text-align: center;
 }
 
-.footer-bottom p{
+.footer-bottom p {
     font-size: 14px;
     word-spacing: 2px;
     text-transform: capitalize;
 }
 
-.footer-bottom span{
+.footer-bottom span {
     text-transform: uppercase;
     opacity: .4;
     font-weight: 200;
 }
-.footer-bottom i{
+.footer-bottom i {
     font-size: 1.4rem;
-    color: var(--text-white);
+    color: var(--text-color);
 }
 
 
 /* ~~ Viewport less than or equal to 750px ~~ */
-@media only screen and (max-width: 750px){
-    .nav .nav-menu, .nav .nav-items{
+@media only screen and (max-width: 750px) {
+    .nav .nav-menu, .nav .nav-items {
         flex-direction: column;
     }
 
-    .nav .toggle-collapse{
+    .nav .toggle-collapse {
         display: initial;
     }
 
-    .leaderboard{
+    .leaderboard {
         margin: 1rem;
     }
-    .content-table{
+    .content-table {
         width: 100%;
     }
 
     .content-table th,
-    .content-table td{
+    .content-table td {
         padding: 1rem .5rem;
         font-size: 15px;
     }
 
-    .content-table p{
+    .content-table p {
         font-size: 10px;
         display: inline;
     }
