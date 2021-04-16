@@ -211,26 +211,8 @@ footer {
     .nav .nav-menu, .nav .nav-items {
         flex-direction: column;
     }
-
+    
     .nav .toggle-collapse {
         display: initial;
-    }
-
-    .leaderboard {
-        margin: 1rem;
-    }
-    .content-table {
-        width: 100%;
-    }
-
-    .content-table th,
-    .content-table td {
-        padding: 1rem .5rem;
-        font-size: 15px;
-    }
-
-    .content-table p {
-        font-size: 10px;
-        display: inline;
     }
 }
