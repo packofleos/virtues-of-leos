@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Anton&family=Livvic:wght@300&display=swap');
-
 
 html, body {
     margin: 0%;
     box-sizing: border-box;
     overflow-x: hidden;
     background: #000000af;
-    color: white;
+    color: var(--text-color);
+    font-family: var(--text-font);
 }
 
 main {
@@ -21,34 +20,26 @@ main {
 :root {
     /* theme colors */
     --text-color: #ffffff;
-    --text-light: #686666da;
-    --bg-color: #0f0f0f;
-    --midnight: #104f55;
     --primary: #1B1B1B;
     --primary-light: #2C2C2C;
-    --leaderboard-bg-1: #101010;
-    --leaderboard-bg-2:#0B0B0B;
-    --leaderboard-highlight: #009879;
-    --leaderboard-white-underline: #dddddd;
-    --black: black;
-    --hr-solid: #bbb;
+    --table-light: #101010;
+    --table-dark:#0B0B0B;
+    --table-underline: #dddddd;
+    --highlight: #104f55;
+    --highlight-dark: #009879;
+    --border: #bbb;
+    --error-color: aqua;
+    --shadow: 1px 1px 1.5rem rgba(0, 0, 0, 0.8);
+    --border-gradient: linear-gradient(-45deg, #ff0000 0%,#9600af 35%, var(--primary) 40%, var(--primary) 60%,#0d3dfa 70%, #00fcff 100% );
     /*  Theme font-family  */
-    --Abel:'Abel', cursive;
-    --Anton:'Anton', cursive;
-    --Livvic: 'Livvic', cursive;
+    --text-font: 'Poppins', cursive;
 }
 
 h1 {
-    font-family: var(--Anton);
     font-size: 2.5rem;
 }
 
 h2 {
-    font-family: var(--Abel);
-}
-
-h3 {
-    font-family: var(--Abel);
     font-size: 1.3rem;
 }
 
@@ -57,10 +48,9 @@ p {
 }
 
 hr.solid {
-    border-top: .1rem solid var(--hr-solid);
+    border-top: .1rem solid var(--border);
     margin: 5rem 2rem;
 }
-
 
 /* ~~ Global classes ~~ */
 a {
@@ -85,7 +75,7 @@ i {
 
 .nav {
     background: var(--primary);
-    box-shadow: 1px 1px 1.5rem rgba(0, 0, 0, 0.8);
+    box-shadow: var(--shadow);
     padding: 0.2rem;
     height: 0rem;
     min-height: 10vh;
@@ -138,23 +128,21 @@ i {
     padding: 1.6rem 1rem;
     font-size: 1.1rem;
     position: relative;
-    font-family: var(--Abel);
     font-size: 1.1rem;
 }
 
 .nav .nav-items .nav-link:hover {
-    background-color: var(--midnight);
+    background-color: var(--highlight);
 }
 
 .nav .nav-items .nav-link:hover a {
-    color: white;
+    color: var(--text-color)
 }
 
 .nav .nav-brand a {
     font-size: 1.3rem;
     padding: 1rem;
     display: block;
-    font-family: var(--Anton);
 }
 
 
@@ -164,7 +152,7 @@ i {
     display: block;
     width: 0;
     height: 2px;
-    background: white;
+    background: var(--text-color);
     transition: width .3s;
 }
 
@@ -178,31 +166,14 @@ i {
     display: block;
     width: 100%;
     height: 2px;
-    background: white;
 }
 
 
 /* ~~ footer ~~ */
-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    background-color: var(--main-color);
-    margin-top: auto;
-    padding: 0 3%;
-    font-family: var(--headerfooter-font);
-}
-
-footer * {
-    color: var(--second-color);
-}
-
 
 footer {
     width:100%;
-    font-family: 'Poppins';
     padding-top: 20px;
-    color: white;
     margin-top: 5vh;
     display: flex;
     flex-direction: column;
@@ -212,7 +183,7 @@ footer {
 
 .footer-bottom {
     justify-content: space-evenly;
-    background: black;
+    background: var(--table-dark);
     width:100%;
     padding: 10px;
     text-align: center;
