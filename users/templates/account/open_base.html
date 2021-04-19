@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="{% static 'users/style.css' %}">
 </head>
 <body>
-{% block userform %}{% endblock %}
+<div class="form-container">
+    {% block content %}{% endblock %}
+</div>
 <div class="container-fluid">
     <div class="row">
         <img src="https://imgur.com/emwg2as.png" id="logo">

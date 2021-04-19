@@ -53,11 +53,14 @@ EMAIL_HOST_PASSWORD = os.environ.get('HOST_EMAIL_PASS')
 # Application definition
 
 INSTALLED_APPS = [
-    # 3rd party apps
     'whitenoise.runserver_nostatic',
     # Pack of Leos apps
     'virtues.apps.VirtuesConfig',
     'users.apps.UsersConfig',
+    # 3rd party apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     # default django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -65,7 +68,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,5 +166,16 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
-# Login
-LOGIN_URL = 'users:login'
+# Authentication
+LOGIN_URL = '/users/login/' # '/accounts/login/'
+LOGIN_REDIRECT_URL = 'virtues:index'
+
+ACCOUNT_SESSION_REMEMBER = True
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]

@@ -1,0 +1,8 @@
+{% extends 'virtues/base.html' %}
+<!-- 
+  allauth templates under 'account/' expects a base so we replace with our custom base template.
+
+  1. open_base.html is for allauth account templates which are intended for unlogged users.
+    E.g- login, signup, forgot pass etc.
+  2. django.contrib.messages overrides for allauth belongs under messages/. Empty file disables that msg. 
+ -->
