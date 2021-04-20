@@ -93,21 +93,73 @@ input[type=text], select {
     box-sizing: border-box;
 }
 
-input[type=submit] {
-    width: 5rem;
-    background-color: var(--highlight);
+input, select {
+    background: var(--primary-light);
     color: var(--text-color);
-    padding: 14px 20px;
-    margin: 2rem;
+    padding: 10px 15px;
+    margin: 5px 0;
+    display: inline-block;
     border: none;
-    border-radius: 15px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* ~~ Button ~~ */
+button {
+    background: none;
+    color: var(--button);
+    border: 1px solid var(--highlight-dark);
+    font-size: 18px;
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    transition: .6s;
+    overflow: hidden;
+}
+
+button:focus {
+    outline: none;
+}
+
+button:before{
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(var(--button-hover), .5);
+    left: 0;
+    top: 0;
+    opacity: .5;
+    filter: blur(30px);
+    transform: translateX(-130px) skewX(-15deg);
+}
+
+button:after {
+    content: '';
+    display: block;
+    position: absolute;
+    background: rgba(var(--button-hover), .2);
+    left: 30px;
+    top: 0;
+    opacity: 0;
+    filter: blur(30px);
+    transform: translate(-100px) scaleX(-15deg);
+}
+
+button:hover {
+    background: var(--highlight-dark);
     cursor: pointer;
 }
 
-input[type=submit]:hover {
-    background-color: var(--highlight);
+button:hover:before {
+    transform: translateX(300px) skewX(-15deg);
+    opacity: .6;
+    transition: .7s;
 }
 
+button:hover:before {
+    transform: translateX(300px) skewX(-15deg);
+    opacity: 1;
+    transition: .7s;
+}
 
 /* ~~ Leaderboard ~~ */
 .leaderboard {
@@ -184,9 +236,9 @@ input[type=submit]:hover {
 /* ~~ Viewport less than or equal to 750px ~~ */
 @media only screen and (max-width: 750px) {
     .leaderboard {
-        margin: 1rem;
-
+        margin: none;
     }
+
     .content-table {
         width: 100%;
     }
@@ -200,5 +252,9 @@ input[type=submit]:hover {
     .content-table p {
         font-size: 8px;
         display: inline;
+    }
+
+    .task-container {
+        margin: 2.5vh 0vh;
     }
 }
