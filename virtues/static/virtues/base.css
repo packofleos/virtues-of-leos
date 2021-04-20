@@ -14,12 +14,14 @@ main {
 }
 
 .content {
-    margin: 5vh;
+    margin: 4vh;
 }
 
 :root {
     /* theme colors */
     --text-color: #ffffff;
+    --button: #ccc;
+    --button-hover: 255,255,255;
     --primary: #1B1B1B;
     --primary-light: #2C2C2C;
     --table-light: #101010;
@@ -120,7 +122,7 @@ nav ul {
 }
 
 .collapse {
-    height:25rem;
+    height: 28rem;
 }
 
 .nav .nav-items {
