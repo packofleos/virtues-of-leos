@@ -1,0 +1,9 @@
+{% extends 'virtues/base.html' %}
+
+{% block content %}
+<ul>
+    {% for name, link in user_links.items %}
+    <li><a href="{{ link }}">{{ name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

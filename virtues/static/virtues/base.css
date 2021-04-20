@@ -54,8 +54,7 @@ hr.solid {
 
 /* ~~ Global classes ~~ */
 a {
-    text-decoration: none;
-    color: var(--text-color);
+    color: var(--highlight-dark);
 }
 
 .flex-row {
@@ -64,14 +63,19 @@ a {
     flex-wrap: wrap;
 }
 
-ul {
-    list-style-type: none;
-}
 i {
     color: var(--text-color);
 }
 
 /* ~~ navbar ~~ */
+nav a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+nav ul {
+    list-style-type: none;
+}
 
 .nav {
     background: var(--primary);
