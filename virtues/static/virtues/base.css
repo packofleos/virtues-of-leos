@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 html, body {
-    margin: 0%;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     overflow-x: hidden;
     background: var(--primary);
@@ -22,10 +23,10 @@ main {
     --text-color: #ffffff;
     --button: #ccc;
     --button-hover: 255,255,255;
-    --primary: #1B1B1B;
+    --primary: rgba(0, 0, 0, 0.8);
     --primary-light: #2C2C2C;
-    --table-light: #101010;
-    --table-dark:#0B0B0B;
+    --table-light: #202020;
+    --table-dark:#131313;
     --table-underline: #dddddd;
     --highlight: #104f55;
     --highlight-dark: #009879;
@@ -49,9 +50,37 @@ p {
     font-size: 0.8rem;
 }
 
+
 hr.solid {
     border-top: .1rem solid var(--border);
     margin: 5rem 2rem;
+}
+
+/* ~~ Particles.JS */
+#particles-js canvas {
+    display: block;
+    vertical-align: bottom;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    -webkit-transition: opacity .8s ease, -webkit-transform 1.4s ease;
+    transition: opacity .8s ease, transform 1.4s ease
+}
+
+#particles-js {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: -10;
+    top: 0;
+    left: 0;
+}
+
+canvas {
+    display:block;
+    position: fixed;
+    z-index: -10;
 }
 
 /* ~~ Global classes ~~ */
@@ -151,7 +180,6 @@ nav ul {
     display: block;
 }
 
-
 /* cool link */
 .cool-link::after {
     content: '';
@@ -174,6 +202,97 @@ nav ul {
     height: 2px;
 }
 
+/* ~~ Messages ~~ */
+.message-container {
+    margin: none;
+    padding: none;
+    overflow: hidden;
+    -moz-animation-name: dropHeader;
+    -moz-animation-iteration-count: once;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-duration: .6s;
+
+    -webkit-animation-name: dropHeader;
+    -webkit-animation-iteration-count: once;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: .6s;
+    box-shadow: var(--shadow);
+}
+
+@-moz-keyframes dropHeader {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 50px;
+    }
+}
+
+@-webkit-keyframes dropHeader {
+    0% {
+        height: 0px;
+    }
+    100% {
+        height: 50px;
+    }
+}
+
+.messages{
+    margin: 0rem;
+    padding: 0rem;
+    list-style-type: none;
+    text-decoration-style: bold;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.messages .success{
+    background: linear-gradient(90deg, rgba(0,36,3,1) 0%, rgba(9,121,24,1) 25%, rgba(0,255,8,1) 50%, rgba(0,36,3,1) 35%, rgba(9,121,24,1) 100%);
+    background-size: 200%;
+    animation: bganimation 15s infinite;
+    width: 100%;
+    height: 1rem;
+    padding: .5rem 0rem;
+}
+
+.messages .info{
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(9,9,121,1) 25%, rgba(0,212,255,1) 50%, rgba(9,9,121,1) 75%, rgba(0,0,0,1) 100%);
+    background-size: 200%;
+    animation: bganimation 15s infinite;
+    width: 100%;
+    height: 1rem;
+    padding: .5rem 0rem;
+}
+
+.messages .warning{
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(82,9,121,1) 25%, rgba(210,0,255,1) 50%, rgba(82,9,121,1) 75%, rgba(0,0,0,1) 100%);
+    background-size: 200%;
+    animation: bganimation 15s infinite;
+    width: 100%;
+    height: 1rem;
+    padding: .5rem 0rem;
+}
+
+.messages .error{
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(98,0,0,1) 25%, rgba(255,77,77,1) 50%, rgba(98,0,0,1) 75%,  rgba(0,0,0,1)100%);
+    background-size: 200%;
+    animation: bganimation 15s infinite;
+    width: 100%;
+    height: 1rem;
+    padding: .5rem 0rem;
+}
+
+@keyframes bganimation {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
 
 /* ~~ footer ~~ */
 
@@ -210,7 +329,6 @@ footer {
     font-size: 1.4rem;
     color: var(--text-color);
 }
-
 
 /* ~~ Viewport less than or equal to 750px ~~ */
 @media only screen and (max-width: 750px) {

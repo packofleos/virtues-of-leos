@@ -24,7 +24,6 @@
     border-image-slice: 30;
 }
 
-
 .task-container .task-above {
     display: flex;
     flex-direction: row;
@@ -65,7 +64,7 @@
     padding: 0;
 }
 /* Submit */
-.submit {
+.submit-btn {
     text-align: center; 
 }
 
@@ -184,6 +183,7 @@ button:hover:after {
     border-collapse: collapse;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
+    
     box-shadow: var(--shadow);
     background: var(--table-light);
     margin:none;
@@ -207,6 +207,7 @@ button:hover:after {
     margin: 1rem 0rem;
     background: var(--table-dark);
     font-size: 10px;
+    box-shadow: var(--shadow);
 }
 .content-table th,
 .content-table td {
