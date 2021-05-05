@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import redirect, reverse
+from django.contrib import messages
 
 def ignorePOST_from(groups, redirect_to):
     """Redirects to the provided url of the user has certain group and made a POST request.
@@ -19,6 +20,9 @@ def ignorePOST_from(groups, redirect_to):
             user = request.user
             if (user.groups.filter(query_condition) and request.method == 'POST' 
                 and not user.is_superuser and not user.is_staff):
+                messages.warning(
+                    request, f"Post by '{', '.join(groups)}' will be ignored. Contact admin for approval."
+                )
                 return redirect(redirect_to)
 
             return view(request, *args, **kwargs)
