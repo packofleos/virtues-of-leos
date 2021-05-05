@@ -9,12 +9,12 @@ from django.contrib.auth.decorators import login_required
 from . import app_conf
 from .models import DailyTask, TaskHistory, Title
 from .forms import TaskHistoryForm
-from .decorators import ignorePOST_from
+from .decorators import ignoreUNSAFE_from
 
 from .ext import title
 
 @login_required
-@ignorePOST_from(['guest'], 'virtues:results')
+@ignoreUNSAFE_from(['guest'], 'virtues:results')
 def index(request):
     """View for the index of the app. From here, user posts their tasks."""
 
